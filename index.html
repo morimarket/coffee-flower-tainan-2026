@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 珈琲と花物語南迴篇｜品牌地圖 Brand Map</title>
+<meta name="description" content="森ノ市 2026 珈琲と花物語 TAINAN 線上品牌地圖：依分區瀏覽參展品牌、查詢攤位編號與位置。11/20–11/22 台南水交社文化園區。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F3E8; --paper2:#EFE8DA; --ink:#1A1A1A; --ink2:#5B564D; --muted:#8C857A;
+  --orange:#E0603A; --yellow:#F2C94C; --beige:#CDBFA6;
+  --r:14px; --shadow:0 2px 0 var(--ink);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.num{font-family:"Space Grotesk","Noto Sans TC",sans-serif;font-weight:700;letter-spacing:.02em}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:baseline;gap:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.brand small{font-weight:500;color:var(--ink2)}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--orange);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em}
+.spacer{flex:1}
+.meta{font-size:13px;color:var(--ink2);white-space:nowrap}
+.jump{border:2px solid var(--ink);background:var(--yellow);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;box-shadow:var(--shadow)}
+.jump:active{transform:translateY(2px);box-shadow:none}
+
+.hero{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:40px;align-items:center;max-width:1180px;margin:0 auto;padding:36px 24px 28px}
+.hero img{width:100%;height:auto;display:block;border:2px solid var(--ink);border-radius:18px;background:#fff}
+.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.2;margin:10px 0 6px;font-weight:900;letter-spacing:.03em}
+.hero .en{font-size:15px;letter-spacing:.14em;color:var(--ink2);font-weight:700}
+.lead{color:var(--ink2);margin:14px 0 22px;max-width:36em}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:560px}
+.fact{border:2px solid var(--ink);border-radius:var(--r);padding:12px 14px;background:#fff}
+.fact b{display:block;font-size:22px}
+.fact span{font-size:12.5px;color:var(--ink2)}
+.how{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink2)}
+.how i{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+
+.app{scroll-margin-top:56px;display:grid;grid-template-columns:390px minmax(0,1fr);height:calc(100vh - 56px);min-height:600px;border-top:2px solid var(--ink)}
+.panel{min-width:0;display:flex;flex-direction:column;min-height:0;border-right:2px solid var(--ink);background:var(--paper)}
+.panel-head{padding:16px 16px 12px;border-bottom:2px solid var(--ink)}
+.search{display:flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:999px;background:#fff;padding:8px 14px}
+.search input{flex:1;border:0;outline:0;font:inherit;font-size:15px;background:transparent;min-width:0}
+.clear{border:0;background:var(--paper2);border-radius:50%;width:22px;height:22px;line-height:20px;font-size:14px;display:none}
+.crumb{display:flex;align-items:center;gap:10px;margin-top:12px;min-height:34px}
+.back{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px 3px 10px;font-size:13.5px;font-weight:700;display:none}
+.back:hover{background:var(--yellow)}
+.crumb .title{font-weight:900;font-size:16px;display:flex;align-items:center;gap:8px}
+.crumb .title .sw{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:700 12px "Space Grotesk"}
+.crumb .sub{font-size:12.5px;color:var(--muted)}
+.list{flex:1;overflow-y:auto;padding:8px 12px 24px;overscroll-behavior:contain}
+
+.zcard{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:16px;padding:12px 14px;margin:8px 0;box-shadow:var(--shadow)}
+.zcard:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink)}
+.zcard:active{transform:translateY(2px);box-shadow:none}
+.zcard .letter{width:54px;height:54px;border-radius:50%;border:2.5px solid var(--ink);display:grid;place-items:center;font-size:24px}
+.zcard .letter.txt{font-size:13px;font-family:"Noto Sans TC";font-weight:900;border-radius:14px;line-height:1.2;text-align:center}
+.zcard b{display:block;font-size:16px}
+.zcard span{display:block;font-size:12.5px;color:var(--ink2)}
+.zcard .go{font-size:20px;font-weight:700}
+.note{font-size:12.5px;color:var(--muted);margin:12px 4px 4px;line-height:1.6}
+
+.group-h{position:sticky;top:-8px;z-index:1;background:var(--paper);padding:12px 4px 6px;font-weight:900;font-size:14px;display:flex;align-items:center;gap:8px}
+.group-h .sw{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink)}
+.group-h small{font-weight:500;color:var(--muted)}
+.item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border-radius:12px;padding:8px 8px;cursor:pointer}
+.item:hover{background:var(--paper2)}
+.item[aria-current="true"]{background:#fff;outline:2px solid var(--ink)}
+.badge{flex:none;min-width:58px;text-align:center;border:2px solid var(--ink);border-radius:999px;padding:2px 8px;font-size:13px;background:var(--zc)}
+.item .t{flex:1;min-width:0}
+.item .t b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .t span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item.pending .t b{color:var(--muted);font-weight:500}
+.fav{flex:none;border:0;background:transparent;padding:4px;color:var(--beige);font-size:18px;line-height:1}
+.fav[aria-pressed="true"]{color:var(--orange)}
+.empty{padding:40px 16px;text-align:center;color:var(--muted);font-size:14px}
+
+.mapwrap{min-width:0;position:relative;overflow:hidden;background:#EDE6D6;touch-action:none;cursor:grab}
+.mapwrap.dragging{cursor:grabbing}
+.stage{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;display:none}
+.stage.on{display:block}
+.stage img{display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.stage svg{position:absolute;left:0;top:0;overflow:visible}
+.hot{fill:transparent;cursor:pointer}
+.hot:hover{fill:rgba(224,96,58,.18);stroke:var(--orange);stroke-width:2.5}
+.zhit{fill:transparent;stroke:transparent;stroke-width:10;cursor:pointer;transition:fill .2s}
+.zhit{stroke-width:4}
+.zhit:hover{fill:rgba(255,255,255,.22);stroke:var(--ink);stroke-dasharray:12 8}
+.dim{fill:#F7F3E8;fill-opacity:.72;fill-rule:evenodd;pointer-events:none;transition:opacity .3s}
+.hit{fill:none;stroke:var(--orange);stroke-width:3.5}
+.favmark{fill:var(--orange);stroke:#fff;stroke-width:2}
+.sel1{fill:none;stroke:var(--orange);stroke-width:4}
+.sel2{fill:none;stroke:var(--orange);stroke-width:3;animation:pulse 1.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.2)}}
+.g-noev{pointer-events:none}
+.tools{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:8px;z-index:5}
+.tools button{width:42px;height:42px;border:2px solid var(--ink);border-radius:12px;background:#fff;font-size:20px;font-weight:700;box-shadow:var(--shadow);display:grid;place-items:center}
+.tools button:active{transform:translateY(2px);box-shadow:none}
+.mapbar{position:absolute;left:14px;top:14px;z-index:5;display:flex;align-items:center;gap:8px;max-width:calc(100% - 80px)}
+.mapback{display:none;align-items:center;gap:6px;border:2px solid var(--ink);background:var(--yellow);border-radius:999px;padding:5px 14px 5px 10px;font-size:14px;font-weight:900;box-shadow:var(--shadow);white-space:nowrap}
+.mapback.show{display:inline-flex}
+.mapback:active{transform:translateY(2px);box-shadow:none}
+.hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 14px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.tip{position:absolute;z-index:6;pointer-events:none;background:var(--ink);color:#fff;font-size:12.5px;padding:4px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,calc(-100% - 14px));display:none}
+
+.card{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:8;width:min(440px,calc(100% - 28px));background:#fff;border:2px solid var(--ink);border-radius:18px;box-shadow:0 4px 0 var(--ink);padding:16px 18px;display:none}
+.card.show{display:block;animation:up .22s ease-out}
+@keyframes up{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.card .row{display:flex;align-items:flex-start;gap:12px}
+.card .logo{flex:none;width:56px;height:56px;border-radius:14px;border:2px solid var(--ink);background:var(--paper2);display:grid;place-items:center;overflow:hidden;font-weight:900;font-size:20px}
+.card .logo img{width:100%;height:100%;object-fit:cover}
+.card h3{margin:0;font-size:18px;line-height:1.3}
+.card .sub{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.card .desc{font-size:14px;color:var(--ink2);margin:10px 0 0}
+.card .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.card .links a,.card .links button{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;background:#fff}
+.card .links a:hover,.card .links button:hover{background:var(--yellow)}
+.card .x{position:absolute;right:10px;top:8px;border:0;background:transparent;font-size:22px;line-height:1;padding:4px;color:var(--muted)}
+.dates{display:flex;gap:6px;margin-top:10px}
+.dates span{font:700 12px "Space Grotesk",sans-serif;border:2px solid var(--beige);color:var(--beige);border-radius:999px;padding:1px 9px}
+.dates span.on{border-color:var(--ink);color:var(--ink);background:var(--yellow)}
+.share{margin-top:8px;font-size:12.5px;color:var(--ink2)}
+.share button{border:0;background:none;padding:0;color:var(--orange);font-weight:700;text-decoration:underline;font-size:12.5px}
+.days{display:flex;gap:6px;margin-top:10px;align-items:center;font-size:12.5px;color:var(--ink2)}
+.days button{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:2px 11px;font-size:12.5px;font-weight:700}
+.days button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.boothtag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;background:var(--ink);color:#fff;border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.boothtag .sw{width:9px;height:9px;border-radius:50%;background:var(--zc)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 16px;border-radius:999px;font-size:13.5px;z-index:50;display:none}
+footer{padding:28px 20px 40px;text-align:center;color:var(--muted);font-size:12.5px;border-top:2px solid var(--ink)}
+footer b{color:var(--ink)}
+
+@media (max-width:900px){
+  .topbar{padding:8px 14px}.meta,.brand small{display:none}
+  .hero{grid-template-columns:1fr;gap:18px;padding:18px 16px 20px}
+  .hero img{max-width:340px;margin:0 auto}
+  .fact b{font-size:18px}
+  .app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;scroll-margin-top:50px}
+  .mapwrap{grid-row:1;height:min(58vh,520px);position:sticky;top:52px;z-index:10;border-bottom:2px solid var(--ink)}
+  .panel{grid-row:2;border-right:0}
+  .list{overflow:visible}
+  .card{bottom:10px;padding:14px 16px}
+  .hint{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">森ノ市 <small>2026 珈琲と花物語</small> <span class="tag">TAINAN</span></div>
+  <div class="spacer"></div>
+  <div class="meta">11.20 – 11.22｜12:00 – 18:00｜台南水交社文化園區</div>
+  <button class="jump" id="jumpBtn">查看品牌地圖 ↓</button>
+</header>
+
+<section class="hero">
+  <img src="kv.jpg" alt="2026 珈琲と花物語 Asia's Coffee &amp; Arts Festival 台南 主視覺" width="1400" height="1400">
+  <div>
+    <div class="en">ASIA'S COFFEE &amp; ARTS FESTIVAL · BRAND MAP</div>
+    <h1>2026 珈琲と花物語<br>品牌地圖</h1>
+    <p class="lead">來自台灣與日本的咖啡、職人手作、花藝、甜點與選物品牌，散落在水交社的林蔭與老屋之間。先選擇分區，再找到每個品牌的攤位位置。</p>
+    <div class="facts">
+      <div class="fact"><b class="num">11.20–22</b><span>週五至週日 12:00–18:00</span></div>
+      <div class="fact"><b class="num" id="factBooths">300+</b><span>參展品牌</span></div>
+      <div class="fact"><b class="num">A–E</b><span>五大分區＋小木屋</span></div>
+    </div>
+    <div class="how"><span><i>1</i>選擇分區</span><span><i>2</i>點選攤位看品牌與社群</span><span><i>3</i>★ 收藏成逛展清單</span></div>
+  </div>
+</section>
+
+<main class="app" id="app">
+  <aside class="panel">
+    <div class="panel-head">
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="q" type="text" enterkeyhint="search" placeholder="搜尋品牌、類別或攤位編號（如 A12）" autocomplete="off" aria-label="搜尋品牌或攤位">
+        <button class="clear" id="clearQ" aria-label="清除搜尋">×</button>
+      </label>
+      <div class="days" id="days" role="group" aria-label="參加日期篩選"><span>日期</span>
+        <button data-day="0" aria-pressed="true">全部</button><button data-day="20" aria-pressed="false">11/20 五</button><button data-day="21" aria-pressed="false">11/21 六</button><button data-day="22" aria-pressed="false">11/22 日</button></div>
+      <div class="crumb">
+        <button class="back" id="back">← 全部分區</button>
+        <div class="title" id="ctitle"></div>
+        <div class="sub" id="csub"></div>
+      </div>
+    </div>
+    <div class="list" id="list"></div>
+  </aside>
+
+  <section class="mapwrap" id="mapwrap" aria-label="園區配置圖">
+    <div id="stages"></div>
+    <div class="mapbar"><button class="mapback" id="mapBack" aria-label="回上一頁地圖"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span id="mapBackTxt">上一頁</span></button><div class="hint" id="hint">點選分區查看攤位</div></div>
+    <div class="tools">
+      <button id="zin" aria-label="放大">＋</button>
+      <button id="zout" aria-label="縮小">－</button>
+      <button id="zfit" aria-label="回到全區" title="回到全區"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+    <div class="tip" id="tip"></div>
+    <div class="card" id="card" role="dialog" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer>
+  <b>森ノ市 Mori Market</b>　2026 珈琲と花物語 TAINAN｜台南水交社文化園區<br>
+  配置圖為示意，攤位位置以活動現場為準　·　參展品牌陸續公布中
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   參展品牌資料：之後只要在這裡填入即可
+   booth   ：攤位編號，如 "A01"、"E12"；小木屋（設計）請填 "木01" 或 "小木屋01"
+             一個品牌占多個攤位可寫 ["A01","A02"]
+   name    ：品牌名稱（必填）   name_en：英文/日文名稱（選填）
+   category：類別（咖啡、甜點、陶藝、花藝、選物…）   origin：台灣 / 日本…
+   days    ：參加日期 [20,21,22]（同一攤位不同日期由不同品牌使用時，各自填寫）
+   ig / fb / web：社群連結，以 IG 為主，沒有 IG 才放 FB   desc：一句話介紹（選填）
+   logo    ：品牌圖片網址或 data URI（選填）
+   ===================================================================== */
+const BRANDS = [
+  {"booth":"小木屋01","name":"老3香室","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/laoshan_collector"},
+  {"booth":"小木屋02","name":"哈娜娜在尼泊爾手作小物","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/hanana.in.nepal"},
+  {"booth":"小木屋03","name":"KALAKAR","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/kalakar.tw"},
+  {"booth":"小木屋04","name":"W.R.C|野隱陶根","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/w.r.c_studio"},
+  {"booth":"小木屋05","name":"Fusion Ceramics","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/ceramicsfusion"},
+  {"booth":"小木屋06","name":"郁郁YùYù","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://instagram.com/yuyuteadaily"},
+  {"booth":"小木屋07","name":"無光造物","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://instagram.com/_zaowu"},
+  {"booth":"A01","name":"KOEKJE美式軟餅乾","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/koekje.come"},
+  {"booth":"A02","name":"15號甜室","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/room15_patisserie"},
+  {"booth":"A03","name":"樹皮小姐Ladytree bakery","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/ladytree_bakery"},
+  {"booth":"A04","name":"富美桂","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/grandmama_grandpa"},
+  {"booth":"A05","name":"覓蒔ダックワーズ売店","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/seekseektw"},
+  {"booth":"A06","name":"綺楽糖","category":"洋菓子","type":"餐飲","days":[21,22],"fb":"https://www.facebook.com/rakurakusama"},
+  {"booth":"A07","name":"BLACK LULU 可麗露專門","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/black_lulu_canele"},
+  {"booth":"A08","name":"厝珈啡","category":"珈琲","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/tshu_kha"},
+  {"booth":"A09","name":"尖頭油飯","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/jiantou_"},
+  {"booth":"A10","name":"大鬍子小光頭 私廚料理","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://instagram.com/beard_baldhead"},
+  {"booth":"A11","name":"el postre 帛絲翠","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/elpostre_basquecheesecake"},
+  {"booth":"A12","name":"日和理想布丁提案","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/perfectpudding2020"},
+  {"booth":"A13","name":"甜一甜, anyway可麗露專賣店","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://instagram.com/anywaydessert"},
+  {"booth":"A14","name":"日腸小室","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/oldfoodstall"},
+  {"booth":"A15","name":"The Good One Coffee Roaster","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/thegoodone_coffeeroaster"},
+  {"booth":"A16","name":"NO.162冰滴咖啡","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"http://instagram.com/no.162_"},
+  {"booth":"A17","name":"村裡的猫烘豆工作室","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://instagram.com/_nekomura"},
+  {"booth":"A18","name":"晃晃咖啡","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/stand_upcoffee"},
+  {"booth":"A19","name":"鄰人咖啡 Neighboring kaffa","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/neighboring_kaffa"},
+  {"booth":"A20","name":"觀九峰咖啡","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/zencoffee99"},
+  {"booth":"A21","name":"VWI COFFEE HOUSE","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/vwibychadwang/"},
+  {"booth":"A22","name":"米弎豆お菓子処","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/misato.machitea"},
+  {"booth":"A23","name":"莃日","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/shishi.days_coffee"},
+  {"booth":"A24","name":"森海手作甜點","category":"洋菓子","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/patisserie_forest_sea/"},
+  {"booth":"A25","name":"秋菓草莓大福","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/qiu_guo11"},
+  {"booth":"A26","name":"BB貓甜點：布朗尼＆軟餅乾","category":"洋菓子","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/bb.cat_dessert"},
+  {"booth":"A27","name":"MOREHEI COFFEE • 墨黑咖啡","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/morehei.coffee"},
+  {"booth":"A28","name":"KOKO STUDIO","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/koko.studio_official"},
+  {"booth":"A29","name":"一樂","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/onehappyice"},
+  {"booth":"A30","name":"ITUMO9番日式生甜甜圈","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/9itumo"},
+  {"booth":"A31","name":"Calmhere Caffe","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/calmhere_caffe"},
+  {"booth":"A32","name":"木禾トースト","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/muherdiary"},
+  {"booth":"A33","name":"TOBA TOBA COLA","category":"散步輕食","type":"餐飲","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/tobatobacola"},
+  {"booth":"A34","name":"canaan","category":"珈琲","type":"餐飲","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/canaan_________"},
+  {"booth":"A35","name":"ハレとケ珈琲","category":"珈琲","type":"餐飲","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/haretoke.cs"},
+  {"booth":"A36","name":"Nagasawa COFFEE","category":"珈琲","type":"餐飲","days":[21,22],"origin":"日本","ig":"https://www.instagram.com/nagasawacoffee"},
+  {"booth":"A37","name":"R E D P O S I O N","category":"珈琲","type":"餐飲","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/redpoisoncoffee"},
+  {"booth":"A38","name":"FILTER SUPPLY","category":"珈琲","type":"餐飲","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/filter.supply"},
+  {"booth":"A39","name":"Alchemist","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/alchemist.tw/"},
+  {"booth":"A40","name":"昔昔","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/xixi_mukashi"},
+  {"booth":"A41","name":"四季蜂收","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/natural_flavor_seeker"},
+  {"booth":"A42","name":"荳某鬆餅","category":"洋菓子","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/doumo_waffle"},
+  {"booth":"A43","name":"露嗑迷甜點工作室","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/lookatme_57"},
+  {"booth":"A44","name":"山豆几","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/mountainbeans.phangtiam"},
+  {"booth":"A45","name":"漢宮包子包&豆花","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/buns_buns_shop"},
+  {"booth":"A46","name":"村花家","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://instagram.com/cv.toudao"},
+  {"booth":"A47","name":"HITHERE 南非國寶茶","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://instagram.com/hithere.rooibostea"},
+  {"booth":"A48","name":"A. cake","category":"洋菓子","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/acake999"},
+  {"booth":"A49","name":"Howbar Café 好吧咖啡","category":"珈琲","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/howbarcafe"},
+  {"booth":"A50","name":"勝好貝果專門店","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/good_baked"},
+  {"booth":"A51","name":"沓沓吃飯","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/tata_is_eating/"},
+  {"booth":"A52","name":"HalF²半半°","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/2halfcafe"},
+  {"booth":"A53","name":"haveanourday偶爾司康","category":"散步輕食","type":"餐飲","days":[21],"ig":"https://instagram.com/haveanourday"},
+  {"booth":"A53","name":"吉 雞蛋糕","category":"洋菓子","type":"餐飲","days":[22],"ig":"https://www.instagram.com/jidangao2026"},
+  {"booth":"A54","name":"小倉廚","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/ogura_dessert"},
+  {"booth":"A55","name":"叁拾而立","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/30years.erli"},
+  {"booth":"A56","name":"LuxBee","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/luxbee66"},
+  {"booth":"A57","name":"XX_okaeri","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/xx_okaeri/"},
+  {"booth":"A58","name":"Dulce Vida 甜點甜","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/dulcevidadessert"},
+  {"booth":"A59","name":"山科製菓室","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/yamashina_seika"},
+  {"booth":"A60","name":"漫慢スコーン","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/munmunscone"},
+  {"booth":"A61","name":"LeFrenchQuiche 法式鹹派","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/lefrenchquiche"},
+  {"booth":"B01","name":"Chi_handcraft 森飾所","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/chihandcraft77"},
+  {"booth":"B02","name":"擇日","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://instagram.com/zerih.studio"},
+  {"booth":"B03","name":"島嶼圖錄","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/island_pattern"},
+  {"booth":"B04","name":"娃哈哈手作屋","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/wa_ha_haaa"},
+  {"booth":"B05","name":"休棉日","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/yasumitai_pottery"},
+  {"booth":"B06","name":"島嶼日常 shimanohi","category":"皮革工藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/shimanohi.tw"},
+  {"booth":"B07","name":"彭 · 璐","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/peng_luuu/profilecard/"},
+  {"booth":"B08","name":"波鳥","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/bobird.studio"},
+  {"booth":"B09","name":"Holi Rise | 禾里兆嶼","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/holirise_lab713"},
+  {"booth":"B10","name":"y-axis","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/p/DAvE5-NzCDE/"},
+  {"booth":"B11","name":"smellscape 氣味構築的景緻","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/smellscape_tw"},
+  {"booth":"B12","name":"千荒浮世","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/nan.sen.fusoku"},
+  {"booth":"B13","name":"heehee","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/heehee_tw"},
+  {"booth":"B14","name":"藜夢插畫 Limeng illustration","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/limeng.art"},
+  {"booth":"B15","name":"Doubletree","category":"寵物用品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/doubletree_lin"},
+  {"booth":"B16","name":"Korobibi","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/korobibi_"},
+  {"booth":"B17","name":"織染飾 Weave x Room","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/weavexroom"},
+  {"booth":"B18","name":"捉夢人 DreamKatcher","category":"陶作、木藝","type":"設計","days":[20,21],"ig":"https://www.instagram.com/dreamkatcher_studio"},
+  {"booth":"B19","name":"JouerxProckr 職人背帶","category":"織品、生活選物","type":"設計","days":[20,21,22],"fb":"https://www.facebook.com/Jouer8.tw"},
+  {"booth":"B20","name":"Q.studio_","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/q.studio_"},
+  {"booth":"B21","name":"HLBmeow花莉巴喵","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/hlbmeow"},
+  {"booth":"B22","name":"KiiBii Fragrance Studio","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/kiibiifragrance"},
+  {"booth":"B23","name":"Koo Accessories","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/koo_acc"},
+  {"booth":"B24","name":"Laurel Craft","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/laurelcraft12"},
+  {"booth":"B25","name":"Sentimental Studio 善感工室","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/_sentimental_studio"},
+  {"booth":"B26","name":"22ただ手作品牌","category":"寵物用品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/ninitada_26"},
+  {"booth":"B27","name":"5AM Jewelry","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/5amjewelry"},
+  {"booth":"B28","name":"1st Rd.","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/1st_rd._handmade"},
+  {"booth":"B29","name":"花森麵線 HwaSenNoodles","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/hwasennoodles"},
+  {"booth":"B30","name":"YIJU手作陶","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/yijupottery"},
+  {"booth":"B31","name":"Jocelyn Flores","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/jocelynflores.tm"},
+  {"booth":"B32","name":"達比阿布Dabby Abu","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/dabby.abu"},
+  {"booth":"B33","name":"任性拾光","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/unusual.jenxing"},
+  {"booth":"B34","name":"UTOPIAEAR","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/utopiaear"},
+  {"booth":"B35","name":"GIN SELECT 手作天然珍珠飾品","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/gin_select"},
+  {"booth":"B36","name":"Mortise_com","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/mortise_com"},
+  {"booth":"B37","name":"Rora Studios","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/rorastudios_"},
+  {"booth":"B38","name":"Moola穆拉","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/moola.acc"},
+  {"booth":"B39","name":"Misty studio","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/_misty_studio"},
+  {"booth":"B40","name":"樟樹院子","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/zasuyard"},
+  {"booth":"B41","name":"Rainforest W.","category":"皮革工藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/rainforest_w5"},
+  {"booth":"B42","name":"FURŪTSU 裹実設計工作室","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/furutsu_design"},
+  {"booth":"B43","name":"P714星球","category":"其他","type":"設計","days":[20,21,22],"ig":"https://instagram.com/p714web"},
+  {"booth":"B44","name":"UOMIKI","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/uomiki1218"},
+  {"booth":"B45","name":"gelato","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/gelato_310"},
+  {"booth":"B46","name":"marb.","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://instagram.com/marb.0410"},
+  {"booth":"B47","name":"Lithops","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/lithops_lithops"},
+  {"booth":"B48","name":"Areyou?+","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/areyou0820"},
+  {"booth":"B49","name":"ICELOLLY","category":"織品、生活選物","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/icelolly.zakka"},
+  {"booth":"B50","name":"HORU SHOP","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/horushop"},
+  {"booth":"B51","name":"matchupbunguten","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/matchupbunguten"},
+  {"booth":"B52","name":"Mayamoon","category":"紙品、文字","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/mayamoon0000"},
+  {"booth":"B53","name":"in the mirror (made in tokyo)","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/inthemirror_official"},
+  {"booth":"B54","name":"nr.product","category":"其他","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/nr.product"},
+  {"booth":"C01","name":"火氣土產","category":"陶作、木藝","type":"設計","days":[20],"ig":"https://www.instagram.com/roarpstw"},
+  {"booth":"C01","name":"艸微製陶","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/weipottery"},
+  {"booth":"C02","name":"謎蔘蔘","category":"陶作、木藝","type":"設計","days":[20],"ig":"https://www.instagram.com/mi_shenshen"},
+  {"booth":"C02","name":"有山","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/naturefriendly.310"},
+  {"booth":"C03","name":"jiho己合","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/jiho_studio"},
+  {"booth":"C04","name":"Lan","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/laninforest"},
+  {"booth":"C05","name":"Su Natural","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/su__natural"},
+  {"booth":"C06","name":"隅光YU GUANG","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/yuguang_official"},
+  {"booth":"C07","name":"𝐓𝐡𝐞 𝐘𝐞𝐧 - 顏 謹制","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/theyen.atelier"},
+  {"booth":"C08","name":"貳參貳小賣所","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/rooms232"},
+  {"booth":"C09","name":"YOSHiE's portrait store","category":"紙品、文字","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/yoshiehirano"},
+  {"booth":"C10","name":"Ruce","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/ruce_glassbutton"},
+  {"booth":"C11","name":"ysg jewelry","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/ysgjewelry"},
+  {"booth":"C12","name":"３みっつ","category":"金工、飾品","type":"設計","days":[20,21,22],"origin":"日本","ig":"https://www.instagram.com/3mitts"},
+  {"booth":"C13","name":"LEM + SAJI","category":"金工、飾品","type":"設計","days":[21,22],"origin":"日本","ig":"https://www.instagram.com/lemjewelry24","ig2":"https://www.instagram.com/saj_i2021"},
+  {"booth":"C14","name":"Auzikstore 手抖孩子","category":"織品、生活選物","type":"設計","days":[20,21,22],"origin":"香港","ig":"https://instagram.com/auzikstore"},
+  {"booth":"C15","name":"偷偷喊我 手作裁縫室","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/toutou_bags"},
+  {"booth":"C16","name":"Chia Chia Good 鈕扣工作室","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/chia_chia_good/"},
+  {"booth":"C17","name":"SURELY Design","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/surely_design"},
+  {"booth":"C18","name":"HiGh MaLi","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/high.mali"},
+  {"booth":"C19","name":"西瓜太太","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/watermelontaitai"},
+  {"booth":"C20","name":"mich.illust ✦ RuBa RuBa","category":"陶作、木藝","type":"設計","days":[20,21],"ig":"https://www.instagram.com/michtdes"},
+  {"booth":"C21","name":"壹弍文創","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/vintagestyle1212"},
+  {"booth":"C22","name":"CERES Parfums","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/ceres_parfum"},
+  {"booth":"C23","name":"Dear meteor 親愛流星","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/dear_meteor_04"},
+  {"booth":"C24","name":"DAPB可愛手工軟陶小物","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/dapb_cute_clay"},
+  {"booth":"C25","name":"初拾","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/_ten.hand"},
+  {"booth":"C26","name":"沐沐珍栽","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/mumujen_planting"},
+  {"booth":"C27","name":"旅。交易所 Travel & Trade","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://instagram.com/travel_trade2"},
+  {"booth":"C28","name":"Almost there 一哩","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/almost_there__studio"},
+  {"booth":"C29","name":"Davina Faith大衛南菲","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"http://www.instagram.com/davina_faith_fruitful_design"},
+  {"booth":"C30","name":"PIPAN","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://instagram.com/kestudio_pipan"},
+  {"booth":"C31","name":"shachi_lab 魚虎","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/shachi__lab"},
+  {"booth":"C32","name":"李妮Lini 紙上工作室","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://instagram.com/ni_nihow"},
+  {"booth":"C33","name":"阿發的阿公是木匠","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/woodcraftfafa"},
+  {"booth":"C34","name":"kinoko room","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/kinoko.room"},
+  {"booth":"C35","name":"良繕製砌","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/wl_kintsugi_pottery"},
+  {"booth":"C36","name":"#bs","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/b_s_write"},
+  {"booth":"C37","name":"宅心 heim","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/heim.official"},
+  {"booth":"C38","name":"EOS","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/eos_2023tw"},
+  {"booth":"C39","name":"Atiny 微物營造","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/a_tiny__"},
+  {"booth":"C40","name":"Howzzz好事","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://instagram.com/how._.zzz"},
+  {"booth":"C41","name":"鳥控 Birdcone","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/bird_cone"},
+  {"booth":"C42","name":"草石陶事","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/caoshi.ceramic"},
+  {"booth":"C43","name":"恬日 tan.nichi","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/tan.nichi"},
+  {"booth":"C44","name":"塩植","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/goodlooking.plants"},
+  {"booth":"C45","name":"林源美｜源香yuan_incense","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/yuan_incense"},
+  {"booth":"C46","name":"可居 The Livable Studio","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/thelivablestudio"},
+  {"booth":"C47","name":"阿曼尼手作","category":"織品、生活選物","type":"設計","days":[20,21,22],"fb":"https://facebook.com/armani1974"},
+  {"booth":"C48","name":"美保貓貓ミホニャンコ","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/miho_nyanko"},
+  {"booth":"C49","name":"蘇生 sosei atelier","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/soseiatelier"},
+  {"booth":"C50","name":"YANG HAN陽涵","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/yanghanoffical"},
+  {"booth":"C51","name":"隅生心工","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/noland10231212"},
+  {"booth":"C52","name":"bangkok sakthi 曼谷船橋","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/bangkoksakthi"},
+  {"booth":"C53","name":"卜人","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/bewater_studio_"},
+  {"booth":"C54","name":"光hikari","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/p/DTdOGwUkqEx/"},
+  {"booth":"C55","name":"金英果","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/mosstracegreen"},
+  {"booth":"C56","name":"露森","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/rusen_soap"},
+  {"booth":"C57","name":"飾 子 sz studio","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/studio_sz"},
+  {"booth":"C58","name":"odorikoko踊の心","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/odo.ri"},
+  {"booth":"C59","name":"山泯","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/shan.min_"},
+  {"booth":"C60","name":"moreisless日系棉麻服飾","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/moreisless2023"},
+  {"booth":"C61","name":"夕忻陶坊","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/xixin_life"},
+  {"booth":"C62","name":"沿沿製所","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/yanyan_studio"},
+  {"booth":"C63","name":"由木25","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/yumu25.select_"},
+  {"booth":"C64","name":"隅隅文房具","category":"紙品、文字","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/sumizumi_tw"},
+  {"booth":"C65","name":"老木魚","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/old_wooden_fish"},
+  {"booth":"C66","name":"幸草 Sheen","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/flowerstudio.sheen"},
+  {"booth":"C67","name":"_h__u_i__","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/_h__u_i__"},
+  {"booth":"C68","name":"dodu","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/dodu.ceramique"},
+  {"booth":"C69","name":"瞎覓手染","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/xiami_dye"},
+  {"booth":"C70","name":"茫艸","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/grassdrunk"},
+  {"booth":"C71","name":"Kósmos","category":"其他","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/kosmos_med"},
+  {"booth":"C72","name":"小拙生活/友善環境木作設計","category":"陶作、木藝","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/rawlife.maker"},
+  {"booth":"C73","name":"Chichi’s flower 花開日常","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/chichis_flower"},
+  {"booth":"C74","name":"一些","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ixie.co"},
+  {"booth":"C75","name":"謝工作室","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/t_shape_of"},
+  {"booth":"C76","name":"生活器皿-春郎陶chunlang.tao","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/chunlang.tao"},
+  {"booth":"C77","name":"MIHER茉荷","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mihercare"},
+  {"booth":"C78","name":"豬仔包pigmade","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/pigmade"},
+  {"booth":"C79","name":"小岩製","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/siaoyanjhih"},
+  {"booth":"C80","name":"關於手寫工作室","category":"紙品、文字","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hsuan_write"},
+  {"booth":"C81","name":"山織｜Mount.offi","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mount.offi"},
+  {"booth":"C82","name":"WHITE FIELD 染布花","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/atelier_whitefield"},
+  {"booth":"C83","name":"ggoomstudio","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ggoom_studio"},
+  {"booth":"C84","name":"Cy.serendip","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/cy.serendip"},
+  {"booth":"D01","name":"cherry｜埕裡捻飾","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://instagram.com/cherry_hand.made"},
+  {"booth":"D02","name":"靄靄文化 IOI CULTURE LAB","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ioi.lab"},
+  {"booth":"D03","name":"ARIEL：","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/arielleira.ariel"},
+  {"booth":"D04","name":"voyager","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/the.voyager.studio"},
+  {"booth":"D05","name":"Wah Books","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/wahbooks"},
+  {"booth":"D06","name":"zuzudamn","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/zuzudamn"},
+  {"booth":"D07","name":"金陶囍 Gentle Smithing","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/gentle.smithing"},
+  {"booth":"D08","name":"哈哈茹工作室","category":"紙品、文字","type":"設計","days":[21,22],"ig":"https://www.instagram.com/wwwangyunju"},
+  {"booth":"D09","name":"偶們","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/about.weourus"},
+  {"booth":"D10","name":"Amber Green's","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ambergreen_adventure"},
+  {"booth":"D11","name":"satí sensation","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/sati.sensation"},
+  {"booth":"D12","name":"HARUKO33.STUDIO","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/haruko33.studio"},
+  {"booth":"D13","name":"LibreLab","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/librelab_tw"},
+  {"booth":"D14","name":"MOMMOMHAND 媽媽手","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mommomhand"},
+  {"booth":"D15","name":"Mount Craft. 山手製研所","category":"皮革工藝","type":"設計","days":[21,22],"ig":"https://instagram.com/mount.craft"},
+  {"booth":"D16","name":"NINA HO ILLUSTRATION","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ninahoillustration"},
+  {"booth":"D17","name":"mummen 姆們","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mummen.tw"},
+  {"booth":"D18","name":"RoMi STUDIO","category":"寵物用品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/_romi_studio"},
+  {"booth":"D19","name":"SOME_WAY","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/some_way.studio/"},
+  {"booth":"D20","name":"STRELITZIA 天堂鳥","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/strelitzia_official"},
+  {"booth":"D21","name":"WU studio","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/wu.studio.2019"},
+  {"booth":"D22","name":"一粟E.sue","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/e.sue_2025"},
+  {"booth":"D23","name":"Yi-Po Ceramics","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/yipoceramics"},
+  {"booth":"D24","name":"YC Object Studio","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ycobject.studio"},
+  {"booth":"D25","name":"落凡","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/one1__stone"},
+  {"booth":"D26","name":"旧 OneDay","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/oneday_rf"},
+  {"booth":"D27","name":"MojiMoji-默記","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mojimoji.mj"},
+  {"booth":"D28","name":"OKAERI","category":"寵物用品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/okaeri.2023"},
+  {"booth":"D29","name":"曼荼羅","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/manadala_walker"},
+  {"booth":"D30","name":"HOOKIN設計","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hookin.design"},
+  {"booth":"D31","name":"Lullaby","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/lullaby__________"},
+  {"booth":"D32","name":"花織丸","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/in_flowerrr"},
+  {"booth":"D33","name":"River手作袋包","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/_riverbag_"},
+  {"booth":"E01","name":"流浪卡布 wander cup","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/wander_cup"},
+  {"booth":"E02","name":"弎茶SAN CHA","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/san__chacafe"},
+  {"booth":"E03","name":"頑固油飯","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/onegu.2019"},
+  {"booth":"E04","name":"阿美嬤紅茶奶","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/ameimahongchanai"},
+  {"booth":"E05","name":"阿美嬤喫茶鋪","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/ameimahongchanai"},
+  {"booth":"E06","name":"共生咖啡","category":"珈琲","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/symbiosis_cafe"},
+  {"booth":"E07","name":"SESERAGI季節水果塔","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/seseragi.tart"},
+  {"booth":"E08","name":"彡川甜點 River Patisserie","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/river.patisserie"},
+  {"booth":"E09","name":"大馬日常","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://instagram.com/malaysiacusine"},
+  {"booth":"E10","name":"Just sandwich 美式三明治","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/just_sandwich93"},
+  {"booth":"E11","name":"蒔豆","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/shi_dou868868"},
+  {"booth":"E12","name":"小栗郎日式栗燒","category":"散步輕食","type":"餐飲","days":[20,21,22],"ig":"https://www.instagram.com/hsiaolilang"},
+  {"booth":"E13","name":"享茶作座","category":"散步輕食","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/xiang_cha_zuo_zuo"},
+  {"booth":"E14","name":"進士第手作杏仁茶","category":"散步輕食","type":"餐飲","days":[21,22],"fb":"https://www.facebook.com/nicoliu1227"},
+  {"booth":"E15","name":"蒔四甜點L'essence","category":"洋菓子","type":"餐飲","days":[21,22],"ig":"https://www.instagram.com/the.essence14"},
+  {"booth":"E16","name":"喫甜。","category":"散步輕食","type":"餐飲","days":[21],"ig":"https://www.instagram.com/eat_sweet1024"},
+  {"booth":"E17","name":"Circle深扣手作","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/casualsoap"},
+  {"booth":"E18","name":"witharch阿秋","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/witharch.tw"},
+  {"booth":"E19","name":"Hermoso Cimi","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/hermoso_tw"},
+  {"booth":"E20","name":"J.I.U","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/j.i.u_select"},
+  {"booth":"E21","name":"Rinnn","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/rinnn_handmade"},
+  {"booth":"E22","name":"雙木的植栽","category":"花藝、氣味","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/handmade_plant"},
+  {"booth":"E23","name":"嚕阿嚕阿嚕","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/lu.lu.tw"},
+  {"booth":"E24","name":"Ciao metal design","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/ciaometaldesign2015"},
+  {"booth":"E25","name":"List<JJJ>","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/jjj.list"},
+  {"booth":"E26","name":"喃喃自語Nannan.ing","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://instagram.com/nannan.ing"},
+  {"booth":"E27","name":"WEDNESDAY studio","category":"金工、飾品","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/wednesday___studio"},
+  {"booth":"E28","name":"自己來⁺ 𝚌𝚛𝚊𝚏𝚝 𝚜𝚎𝚕𝚎𝚌𝚝 𝕩 𝙰𝚜𝚑𝚒𝚖𝚊","category":"織品、生活選物","type":"設計","days":[20,21,22],"ig":"https://www.instagram.com/on_my_own_ethnic"},
+  {"booth":"E29","name":"q flower","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://instagram.com/qhouseflower"},
+  {"booth":"E30","name":"燃花","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ranhua.studio"},
+  {"booth":"E31","name":"一隅泥器","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/corner.ceramic"},
+  {"booth":"E32","name":"一漚 IÖÖ","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/ioo.studio"},
+  {"booth":"E33","name":"JxJ手作","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/jxj_official1124"},
+  {"booth":"E34","name":"女巫日記 Witch Diary","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/witchdiary_studio"},
+  {"booth":"E35","name":"大熊貓","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/dapandatw"},
+  {"booth":"E36","name":"拾物金工","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/shiwu_jewelry"},
+  {"booth":"E37","name":"Ling pottery伶手作陶","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/lingpottery"},
+  {"booth":"E38","name":"nolii","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/nolii.tw"},
+  {"booth":"E39","name":"ro ro om製陶所","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/roro.om_"},
+  {"booth":"E40","name":"1:1供物所 x 手感絹印","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hi.miumiu"},
+  {"booth":"E41","name":"小田月所","category":"紙品、文字","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hihi.sep"},
+  {"booth":"E42","name":"日耀堂BetterDays studio®","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/betterdays_studio"},
+  {"booth":"E43","name":"布包與你","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/sshandmade939"},
+  {"booth":"E44","name":"蛙子小姐 Penguin Capsule","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/penguin.capsule"},
+  {"booth":"E45","name":"樂粉絲精緻皮鞋","category":"皮革工藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/lafuns_shoes"},
+  {"booth":"E46","name":"Miaoisland 喵島","category":"陶作、木藝","type":"設計","days":[21],"ig":"https://www.instagram.com/miaoisland"},
+  {"booth":"E46","name":"Miss PepPer胡椒小姐","category":"金工、飾品","type":"設計","days":[22],"ig":"https://www.instagram.com/miss_p_e_p_p_e_r"},
+  {"booth":"E47","name":"motto motto","category":"陶作、木藝","type":"設計","days":[22],"ig":"https://www.instagram.com/__mottomotto__"},
+  {"booth":"E47","name":"木木一土/陶製所","category":"陶作、木藝","type":"設計","days":[21],"ig":"https://www.instagram.com/mumuyitoo"},
+  {"booth":"E48","name":"小木由","category":"織品、生活選物","type":"設計","days":[22],"ig":"https://www.instagram.com/yuzuhandmake"},
+  {"booth":"E48","name":"慢走皮件製造","category":"皮革工藝","type":"設計","days":[21],"ig":"https://www.instagram.com/huanstore"},
+  {"booth":"E49","name":"紃","category":"其他","type":"設計","days":[22],"ig":"https://www.instagram.com/xun_embroidery"},
+  {"booth":"E49","name":"無吾 W.W.sthya","category":"其他","type":"設計","days":[21],"ig":"https://www.instagram.com/w.w.sthya"},
+  {"booth":"E50","name":"BUWU 布物設計","category":"織品、生活選物","type":"設計","days":[21],"ig":"https://www.instagram.com/buwudesign"},
+  {"booth":"E50","name":"SOLA獨處","category":"金工、飾品","type":"設計","days":[22],"ig":"https://www.instagram.com/solajewelry_"},
+  {"booth":"E51","name":"還細胞生活","category":"紙品、文字","type":"設計","days":[21,22],"ig":"https://www.instagram.com/celllife_"},
+  {"booth":"E52","name":"小土跡陶器","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/thoo_jiah"},
+  {"booth":"E53","name":"A PIECE OF CAT PLANET","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/apieceofcatplanet"},
+  {"booth":"E54","name":"fuwa fuwa.studio","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/fuwa_fuwa.studio"},
+  {"booth":"E55","name":"白日造夢 Day by Dream","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/day_by_dream._"},
+  {"booth":"E56","name":"好的袋物制作所hao’d studio","category":"皮革工藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hao_d_studio"},
+  {"booth":"E57","name":"奾花製所","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/nymph._.garden"},
+  {"booth":"E58","name":"沃十","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/fertilebag"},
+  {"booth":"E59","name":"想い","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://www.instagram.com/omoi_custom"},
+  {"booth":"E60","name":"鉤鉤小羊毛","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/gogosheep_"},
+  {"booth":"E61","name":"有根經絡","category":"其他","type":"設計","days":[22],"ig":"https://www.instagram.com/reel/DW5k118Ekh2/"},
+  {"booth":"E61","name":"盛日 DressDaily_Ceramics","category":"陶作、木藝","type":"設計","days":[21],"ig":"https://www.instagram.com/dressdaily_ceramic"},
+  {"booth":"E62","name":"Moni・摸你","category":"陶作、木藝","type":"設計","days":[22],"ig":"https://www.instagram.com/goodmoni_art"},
+  {"booth":"E62","name":"Muku Puku Ceramic｜不哭製陶","category":"陶作、木藝","type":"設計","days":[21],"ig":"https://www.instagram.com/mukupuku_ceramics"},
+  {"booth":"E63","name":"竹嶺 zhu ling","category":"陶作、木藝","type":"設計","days":[21],"ig":"https://www.instagram.com/_zhu_ling"},
+  {"booth":"E63","name":"W & Aud. 小房間花室","category":"金工、飾品","type":"設計","days":[22],"ig":"https://www.instagram.com/wna_studio"},
+  {"booth":"E64","name":"某日某器","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/acertain.studio"},
+  {"booth":"E65","name":"草花 The Meadows","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/hello.themeadows"},
+  {"booth":"E66","name":"kumotachi 雲耳們","category":"金工、飾品","type":"設計","days":[21,22],"ig":"https://instagram.com/kumotachi_clay"},
+  {"booth":"E67","name":"Mermur Ceramics 眽眽製陶","category":"陶作、木藝","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mermur_ceramics/"},
+  {"booth":"E68","name":"NALIO","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/nalioscent"},
+  {"booth":"E69","name":"木木花藝","category":"花藝、氣味","type":"設計","days":[21,22],"ig":"https://www.instagram.com/mumu_floraldesign"},
+  {"booth":"E70","name":"cicisusu手作","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/cicisusucrochet"},
+  {"booth":"E71","name":"Bonita Studio","category":"織品、生活選物","type":"設計","days":[21,22],"ig":"https://www.instagram.com/bonitastudio1994"},
+  {"booth":"E72","name":"kaichanMa_","category":"其他","type":"設計","days":[21,22],"ig":"https://www.instagram.com/kaichanma_"}
+];
+
+/* 三張配置圖：ov 全區、ade（A/D/E 區）、bc（B/C 區）；pos 為攤位編號在圖上的位置 */
+const MAPS = {"ov":{"w":2576,"h":1887,"zones":{"C":[1646,54,2423,611],"B":[1627,626,2435,1071],"CB":[1645,689,1942,931],"A":[1445,558,1585,1691],"E":[288,765,1423,1107],"D":[1009,1241,1423,1535]},"pos":{"C27":[1966,123],"C29":[2008,144],"C26":[1967,147],"C30":[2008,167],"C25":[1966,171],"C31":[2007,192],"C24":[1967,196],"C23":[1966,220],"C32":[2008,232],"C22":[1966,244],"C33":[2008,256],"C21":[1966,269],"C34":[2008,281],"C69":[2232,289],"C70":[2257,289],"C20":[1966,293],"C35":[2008,305],"C19":[1966,317],"C66":[2146,319],"C71":[2291,319],"C68":[2200,320],"C36":[2032,332],"C37":[2058,332],"C38":[2084,332],"C65":[2146,343],"C72":[2291,343],"C67":[2200,345],"C17":[1966,366],"C73":[2291,368],"C41":[2031,373],"C40":[2058,373],"C39":[2084,373],"C16":[1967,390],"C42":[2032,400],"C43":[2058,400],"C44":[2084,400],"C63":[2146,411],"C64":[2170,411],"C15":[1966,414],"C14":[1967,438],"C45":[2009,446],"C46":[2009,471],"C01":[1687,487],"C02":[1712,487],"C47":[2009,495],"C05":[1887,495],"C06":[1914,495],"C07":[1939,495],"C74":[2254,500],"C75":[2279,500],"C76":[2305,500],"C77":[2331,500],"C78":[2357,500],"C48":[2037,522],"C49":[2063,522],"C53":[2088,522],"C54":[2115,522],"C55":[2140,522],"C56":[2167,522],"C57":[2192,522],"C03":[1780,532],"C04":[1804,532],"C11":[1887,546],"C12":[1913,546],"C13":[1939,546],"C79":[2249,550],"C80":[2275,550],"C81":[2300,550],"C82":[2327,550],"C83":[2352,550],"C84":[2379,550],"C50":[1974,558],"C51":[2000,558],"C52":[2026,558],"C58":[2088,561],"C59":[2115,561],"C60":[2141,561],"C61":[2166,561],"C62":[2192,561],"C08":[1780,569],"C09":[1804,569],"C10":[1845,569],"A27":[1486,605],"A28":[1543,605],"A26":[1486,630],"A29":[1543,630],"A25":[1486,655],"A30":[1543,655],"B54":[1796,668],"B53":[1821,668],"B52":[1901,668],"B51":[1926,669],"A24":[1486,680],"A31":[1542,680],"B50":[1977,694],"A23":[1486,705],"A32":[1543,705],"B49":[1977,719],"B48":[1977,743],"B47":[1977,769],"A22":[1486,776],"B46":[1977,794],"A21":[1486,801],"B45":[1977,818],"A33":[1543,828],"B44":[1977,844],"A34":[1543,853],"A35":[1543,878],"A36":[1543,903],"A37":[1543,928],"A38":[1543,953],"B01":[1669,970],"B02":[1696,970],"B03":[1722,970],"B19":[2045,970],"B20":[2070,970],"B21":[2094,969],"B22":[2119,969],"B23":[2145,970],"B24":[2170,969],"B29":[2216,970],"B30":[2241,970],"B31":[2265,970],"B32":[2291,970],"B33":[2316,970],"B34":[2341,970],"B35":[2365,970],"B36":[2391,970],"B08":[1793,985],"B09":[1817,985],"B10":[1842,985],"B11":[1867,985],"B12":[1892,985],"B15":[1936,997],"B16":[1961,997],"B17":[1986,997],"B18":[2011,997],"B04":[1671,1013],"B05":[1696,1013],"B06":[1720,1013],"B07":[1745,1013],"B25":[2082,1017],"B26":[2107,1017],"B27":[2161,1017],"B28":[2186,1017],"B37":[2241,1017],"B38":[2266,1017],"B39":[2291,1017],"B40":[2316,1017],"B41":[2340,1017],"B42":[2365,1017],"B43":[2391,1017],"B13":[1852,1027],"B14":[1877,1027],"A20":[1486,1033],"A39":[1543,1054],"A19":[1486,1058],"A40":[1543,1079],"A18":[1486,1083],"A41":[1542,1104],"A17":[1486,1108],"A42":[1543,1129],"A16":[1486,1133],"A43":[1543,1154],"A15":[1486,1158],"A44":[1543,1179],"A14":[1486,1183],"A45":[1543,1204],"A13":[1486,1208],"A46":[1543,1229],"A12":[1486,1233],"A47":[1543,1254],"A11":[1486,1258],"A48":[1543,1279],"A10":[1486,1283],"D24":[1305,1284],"D25":[1328,1284],"D26":[1353,1284],"A49":[1543,1304],"A09":[1486,1308],"D27":[1403,1320],"A50":[1543,1329],"A08":[1486,1333],"D32":[1328,1343],"D30":[1353,1343],"D28":[1403,1345],"D18":[1128,1346],"D19":[1153,1346],"D20":[1177,1346],"D21":[1201,1346],"D22":[1225,1346],"D23":[1250,1346],"A51":[1542,1354],"D33":[1328,1368],"D31":[1352,1368],"D29":[1403,1370],"D17":[1078,1371],"A52":[1543,1379],"D16":[1078,1397],"A53":[1543,1404],"D15":[1078,1422],"A54":[1543,1429],"D09":[1153,1433],"D08":[1177,1433],"D07":[1201,1433],"D06":[1225,1433],"D05":[1250,1433],"D04":[1274,1433],"D03":[1298,1433],"D02":[1323,1433],"D01":[1346,1433],"D14":[1078,1447],"A55":[1543,1454],"D10":[1153,1458],"A07":[1486,1458],"D13":[1078,1472],"A56":[1543,1479],"A06":[1486,1483],"D12":[1103,1497],"D11":[1128,1498],"A57":[1543,1504],"A05":[1486,1507],"A58":[1543,1529],"A04":[1486,1533],"A59":[1543,1554],"A03":[1486,1558],"A60":[1543,1579],"A02":[1486,1582],"A61":[1542,1604],"A01":[1486,1607],"C28":[1966,98],"C18":[1966,341],"CB05":[1700,721],"CB06":[1753,756],"CB07":[1853,756],"CB01":[1886,799],"CB04":[1700,886],"CB03":[1785,886],"CB02":[1872,886],"E01":[1408,906],"E02":[1409,858],"E03":[1382,858],"E04":[1272,924],"E05":[1272,973],"E06":[1353,858],"E07":[1275,840],"E08":[1250,840],"E09":[1224,840],"E10":[1200,840],"E11":[1151,830],"E12":[1127,830],"E13":[1101,830],"E14":[1076,830],"E15":[1050,830],"E16":[995,816],"E17":[977,832],"E18":[959,848],"E19":[1127,891],"E20":[1103,891],"E21":[1076,891],"E22":[1052,891],"E23":[1016,913],"E24":[999,929],"E25":[981,946],"E26":[964,961],"E27":[948,995],"E28":[949,1019],"E29":[871,1021],"E30":[845,1021],"E31":[819,1021],"E32":[873,961],"E33":[848,961],"E34":[822,961],"E35":[798,961],"E36":[772,961],"E37":[747,961],"E38":[721,961],"E39":[697,961],"E40":[671,961],"E41":[646,961],"E42":[621,961],"E43":[596,961],"E44":[570,961],"E45":[545,961],"E46":[520,961],"E47":[495,961],"E48":[469,961],"E49":[445,961],"E50":[419,961],"E51":[393,961],"E52":[368,961],"E53":[343,961],"E54":[318,961],"E55":[720,1021],"E56":[695,1021],"E57":[670,1021],"E58":[645,1021],"E59":[620,1021],"E60":[595,1021],"E61":[569,1021],"E62":[544,1021],"E63":[497,1031],"E64":[474,1046],"E65":[451,1059],"E66":[424,1067],"E67":[398,1067],"E68":[375,1067],"E69":[351,1067],"E70":[304,1045],"E71":[304,1020],"E72":[304,997]}},"ade":{"w":2576,"h":2576,"zones":{"A":[1951,753,2132,2151],"E":[449,1020,1923,1465],"D":[1384,1637,1923,2020]},"pos":{"A27":[2005,812],"A28":[2078,812],"A26":[2005,845],"A29":[2078,845],"A25":[2005,878],"A30":[2078,878],"A24":[2005,910],"A31":[2077,910],"A23":[2005,943],"A32":[2078,943],"A22":[2005,1035],"A21":[2004,1068],"A33":[2078,1103],"A34":[2078,1135],"A35":[2078,1167],"A36":[2078,1200],"A37":[2078,1233],"A38":[2078,1265],"A20":[2005,1369],"A39":[2078,1396],"A19":[2005,1401],"A40":[2078,1429],"A18":[2005,1433],"A41":[2077,1462],"A17":[2005,1467],"A42":[2078,1493],"A16":[2005,1499],"A43":[2078,1525],"A15":[2005,1531],"A44":[2078,1559],"A14":[2005,1564],"A45":[2078,1590],"A13":[2005,1595],"A46":[2078,1623],"A12":[2005,1628],"A47":[2078,1656],"A11":[2004,1660],"A48":[2078,1688],"A10":[2005,1693],"D24":[1769,1693],"D25":[1800,1693],"D26":[1831,1693],"A49":[2078,1720],"A09":[2005,1725],"D27":[1897,1740],"A50":[2078,1752],"A08":[2005,1757],"D32":[1800,1771],"D30":[1832,1771],"D28":[1897,1774],"D18":[1541,1775],"D19":[1572,1775],"D20":[1603,1775],"D21":[1634,1775],"D22":[1666,1775],"D23":[1698,1775],"A51":[2077,1785],"D33":[1800,1803],"D31":[1831,1803],"D29":[1897,1806],"D17":[1475,1808],"A52":[2078,1817],"D16":[1475,1840],"A53":[2078,1849],"D15":[1475,1874],"A54":[2078,1882],"D09":[1573,1887],"D08":[1603,1887],"D07":[1635,1887],"D06":[1666,1887],"D05":[1698,1887],"D04":[1729,1887],"D03":[1761,1887],"D02":[1792,1887],"D01":[1822,1887],"D14":[1476,1906],"A55":[2078,1915],"D10":[1573,1919],"A07":[2005,1920],"D13":[1475,1939],"A56":[2078,1947],"A06":[2005,1952],"D12":[1507,1971],"D11":[1540,1972],"A57":[2078,1980],"A05":[2005,1984],"A58":[2078,2011],"A04":[2005,2017],"A59":[2078,2044],"A03":[2005,2049],"A60":[2078,2076],"A02":[2005,2081],"A61":[2077,2108],"A01":[2004,2114],"E16":[1367,1087],"E15":[1439,1105],"E14":[1472,1105],"E13":[1505,1105],"E12":[1538,1105],"E11":[1570,1105],"E17":[1344,1107],"E10":[1633,1118],"E09":[1665,1118],"E08":[1698,1118],"E07":[1731,1118],"E06":[1832,1142],"E18":[1321,1129],"E03":[1869,1142],"E22":[1441,1184],"E21":[1473,1184],"E20":[1507,1184],"E19":[1539,1184],"E23":[1395,1213],"E04":[1727,1227],"E24":[1373,1234],"E25":[1349,1255],"E54":[489,1275],"E53":[521,1275],"E52":[554,1275],"E51":[586,1275],"E50":[620,1275],"E49":[653,1275],"E48":[685,1275],"E47":[718,1275],"E46":[751,1275],"E45":[783,1275],"E44":[816,1275],"E43":[849,1275],"E42":[882,1275],"E41":[914,1275],"E40":[947,1275],"E39":[980,1275],"E38":[1012,1275],"E37":[1045,1275],"E36":[1078,1275],"E35":[1111,1275],"E34":[1143,1275],"E33":[1176,1275],"E32":[1209,1275],"E26":[1327,1275],"E05":[1727,1291],"E27":[1306,1319],"E72":[471,1322],"E28":[1307,1350],"E71":[470,1352],"E62":[782,1353],"E61":[814,1353],"E60":[848,1353],"E59":[880,1353],"E58":[913,1353],"E57":[945,1353],"E56":[978,1353],"E55":[1011,1353],"E31":[1139,1353],"E30":[1173,1353],"E29":[1206,1353],"E63":[721,1366],"E70":[471,1384],"E64":[691,1385],"E65":[661,1402],"E69":[531,1413],"E68":[562,1413],"E67":[592,1413],"E66":[626,1413],"E01":[1904,1204],"E02":[1905,1142]}},"bc":{"w":2576,"h":2576,"zones":{"C":[769,565,1982,1434],"B":[739,1455,2001,2149],"CB":[772,1557,1230,1930]},"pos":{"C27":[1268,673],"C29":[1334,705],"C26":[1268,710],"C30":[1334,743],"C25":[1268,748],"C31":[1333,781],"C24":[1268,786],"C23":[1268,824],"C32":[1334,843],"C22":[1268,861],"C33":[1334,880],"C21":[1267,899],"C34":[1334,919],"C69":[1684,932],"C70":[1722,932],"C20":[1269,937],"C35":[1334,957],"C19":[1269,975],"C66":[1548,977],"C71":[1774,977],"C68":[1633,980],"C36":[1371,1000],"C37":[1412,1000],"C38":[1452,1000],"C65":[1548,1015],"C72":[1775,1015],"C67":[1633,1018],"C17":[1269,1051],"C73":[1775,1053],"C41":[1369,1062],"C40":[1412,1062],"C39":[1452,1062],"C16":[1269,1089],"C42":[1371,1103],"C43":[1412,1103],"C44":[1452,1103],"C63":[1548,1121],"C64":[1587,1121],"C15":[1269,1126],"C14":[1269,1164],"C45":[1335,1176],"C46":[1335,1214],"C01":[833,1239],"C02":[872,1239],"C47":[1335,1252],"C05":[1146,1253],"C06":[1186,1253],"C07":[1226,1253],"C74":[1716,1261],"C75":[1756,1261],"C76":[1797,1261],"C77":[1838,1261],"C78":[1878,1261],"C48":[1378,1294],"C49":[1419,1294],"C53":[1459,1294],"C54":[1500,1294],"C55":[1541,1294],"C56":[1581,1294],"C57":[1621,1294],"C03":[977,1310],"C04":[1016,1310],"C11":[1145,1332],"C12":[1186,1332],"C13":[1226,1332],"C79":[1710,1337],"C80":[1750,1337],"C81":[1789,1337],"C82":[1831,1337],"C83":[1871,1337],"C84":[1912,1337],"C50":[1282,1350],"C51":[1321,1350],"C52":[1362,1350],"C58":[1459,1355],"C59":[1500,1355],"C60":[1541,1355],"C61":[1580,1355],"C62":[1622,1355],"C08":[977,1367],"C09":[1016,1367],"C10":[1079,1367],"B54":[1003,1522],"B53":[1043,1522],"B52":[1166,1522],"B51":[1204,1522],"B50":[1285,1561],"B49":[1285,1600],"B48":[1285,1639],"B47":[1285,1678],"B46":[1285,1717],"B45":[1285,1756],"B44":[1285,1794],"B01":[806,1990],"B02":[847,1990],"B03":[887,1990],"B19":[1391,1990],"B20":[1430,1990],"B21":[1468,1990],"B22":[1508,1990],"B23":[1547,1990],"B24":[1586,1990],"B29":[1658,1990],"B30":[1697,1990],"B31":[1735,1990],"B32":[1775,1990],"B33":[1814,1990],"B34":[1853,1990],"B35":[1892,1990],"B36":[1931,1990],"B08":[998,2015],"B09":[1037,2015],"B10":[1076,2015],"B11":[1114,2015],"B12":[1154,2015],"B15":[1222,2034],"B16":[1261,2034],"B17":[1300,2034],"B18":[1338,2034],"B04":[808,2058],"B05":[847,2058],"B06":[886,2058],"B07":[925,2058],"B25":[1450,2064],"B26":[1489,2064],"B27":[1573,2064],"B28":[1612,2064],"B37":[1697,2064],"B38":[1736,2064],"B39":[1775,2064],"B40":[1814,2064],"B41":[1852,2064],"B42":[1892,2064],"B43":[1931,2064],"B13":[1091,2080],"B14":[1129,2080],"C28":[1268,635],"C18":[1269,1013],"CB05":[854,1603],"CB06":[936,1657],"CB07":[1092,1657],"CB01":[1144,1725],"CB04":[854,1861],"CB03":[987,1861],"CB02":[1121,1861]}}};
+MAPS.ov.src = "map-ov.jpg"; MAPS.ade.src = "map-ade.jpg"; MAPS.bc.src = "map-bc.jpg";
+
+const ZONES = [
+  {k:"A",  name:"A區", type:"帳篷", c:"#EFC94C", fill:"#E3D2A7", map:"ade"},
+  {k:"B",  name:"B區", type:"戶外傘・帳篷", c:"#9DBB83", fill:"#C7D2B0", map:"bc"},
+  {k:"C",  name:"C區", type:"戶外傘", c:"#E9A97A", fill:"#EDCEB2", map:"bc"},
+  {k:"D",  name:"D區", type:"帳篷", c:"#9CBCC6", fill:"#C5D3D6", map:"ade"},
+  {k:"E",  name:"E區", type:"帳篷・小木屋餐飲", c:"#D9919B", fill:"#E8CACA", map:"ade"},
+  {k:"CB", name:"小木屋", type:"設計", c:"#D2603A", fill:"#CFA272", map:"bc"},
+];
+const FACILITIES = [
+  {id:"desk",  name:"活動服務台", s:"服務台", pts:[[1355,1042]]},
+  {id:"stamp", name:"集章所",     s:"集章所", pts:[[1268,1045]]},
+  {id:"wc",    name:"洗手間",     s:"洗手間", pts:[[1203,699],[2011,1205]]},
+  {id:"visitor",name:"水交社遊客中心", s:"遊客中心", pts:[[1711,1231]]},
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent){ const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+const zoneOf = id => id.startsWith("CB") ? "CB" : id[0];
+const zoneObj = k => ZONES.find(z => z.k === k);
+const label = id => id.startsWith("CB") ? "木" + id.slice(2) : id;
+const normBooth = s => String(s).trim().toUpperCase().replace(/\s+/g,"").replace(/^(小木屋|木)/,"CB").replace(/^([A-E]|CB)(\d)$/,"$10$2");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => /^https?:\/\//i.test(u||"") ? u : "";
+const store = { get(k,d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} } };
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.style.display="block"; clearTimeout(toast._t); toast._t=setTimeout(()=>t.style.display="none",1800); }
+const eSub = id => /^E0[1-6]$/.test(id) ? "小木屋（餐飲）" : id.startsWith("CB") ? "小木屋（設計）" : zoneObj(zoneOf(id)).type.split("・")[0];
+const isMobile = () => matchMedia("(max-width:900px)").matches;
+
+/* ---------- entries ---------- */
+const ALL = Object.keys(MAPS.ov.pos);
+const brandByBooth = {}, entries = [];
+const DAYS = [20,21,22];
+BRANDS.forEach((b,i) => {
+  const booths = (Array.isArray(b.booth) ? b.booth : String(b.booth).split(/[,，、]/)).map(normBooth).filter(id => MAPS.ov.pos[id]);
+  if (!booths.length || !b.name) return;
+  if (!b.days || !b.days.length) b.days = DAYS.slice();
+  const e = {key:"b"+i, brand:b, booths, zone:zoneOf(booths[0])};
+  booths.forEach(id => (brandByBooth[id] = brandByBooth[id] || []).push(e)); entries.push(e);
+});
+Object.values(brandByBooth).forEach(a => a.sort((x,y) => x.brand.days[0] - y.brand.days[0]));
+let dayFilter = 0;
+const onDay = e => !dayFilter || !e.brand || e.brand.days.includes(dayFilter);
+const pickBrand = id => { const a = brandByBooth[id]; if (!a) return null; return a.find(onDay) || a[0]; };
+const dayText = d => (d.length === 3 ? "11/20–22 三天" : d.map(x => "11/" + x).join("、"));
+const sameBooth = e => e.brand ? [...new Set(e.booths.flatMap(id => brandByBooth[id] || []))].filter(x => x !== e) : [];
+const order = ["A","B","C","D","E","CB"];
+const sortKey = id => order.indexOf(zoneOf(id)) * 1000 + parseInt(id.replace(/\D/g,""),10);
+const eKey = e => sortKey(e.booths[0]) + (e.brand ? e.brand.days[0] / 100 : 0);
+ALL.forEach(id => { if (!brandByBooth[id]) entries.push({key:id, brand:null, booths:[id], zone:zoneOf(id)}); });
+entries.sort((a,b) => eKey(a) - eKey(b));
+$("#factBooths").textContent = entries.filter(e => e.brand).length;
+const countZone = k => ALL.filter(id => zoneOf(id) === k).length;
+
+/* ---------- build stages ---------- */
+const STAGE = {};
+Object.entries(MAPS).forEach(([key, m]) => {
+  const st = document.createElement("div"); st.className = "stage"; st.dataset.map = key;
+  st.innerHTML = `<img src="${m.src}" width="${m.w}" height="${m.h}" alt="${key==="ov"?"全區配置圖":key==="ade"?"A、D、E 區配置圖":"B、C 區配置圖"}">`;
+  const svg = el("svg",{viewBox:`0 0 ${m.w} ${m.h}`,width:m.w,height:m.h}); st.appendChild(svg);
+  const g = {};
+  ["dim","hot","zone","fav","hit","sel"].forEach(n => g[n] = el("g",{class:(n==="hot"||n==="zone")?"":"g-noev"},svg));
+  const R = key === "ov" ? 14 : 24;
+  Object.entries(m.pos).forEach(([id,[x,y]]) => {
+    const c = id.startsWith("CB") ? el("rect",{x:x-(key==="ov"?14:22),y:y-(key==="ov"?16:24),width:key==="ov"?28:44,height:key==="ov"?42:64,rx:12,class:"hot"},g.hot) : el("circle",{cx:x,cy:y,r:R,class:"hot"},g.hot);
+    c.dataset.id = id;
+  });
+  if (key === "ov") ["A","B","C","D","E","CB"].forEach(k => {
+    const [x0,y0,x1,y1] = m.zones[k];
+    const r = el("rect",{x:x0,y:y0,width:x1-x0,height:y1-y0,rx:28,class:"zhit"},g.zone); r.dataset.zone = k;
+  });
+  $("#stages").appendChild(st);
+  STAGE[key] = {el:st, svg, g, m, R};
+});
+
+/* ---------- view state per stage ---------- */
+const wrap = $("#mapwrap");
+let cur = "ov";
+const view = {x:0, y:0, s:0.1};
+const fitScale = (w,h) => Math.min(wrap.clientWidth / w, wrap.clientHeight / h);
+function minS(){ const m = STAGE[cur].m; return fitScale(m.w, m.h) * 0.9; }
+function clamp(){
+  const m = STAGE[cur].m;
+  view.s = Math.min(3, Math.max(minS(), view.s));
+  const vw = wrap.clientWidth, vh = wrap.clientHeight, W = m.w*view.s, H = m.h*view.s;
+  view.x = W < vw ? (vw - W)/2 : Math.min(60, Math.max(vw - W - 60, view.x));
+  view.y = H < vh ? (vh - H)/2 : Math.min(60, Math.max(vh - H - 60, view.y));
+}
+function apply(){ clamp(); STAGE[cur].el.style.transform = `translate(${view.x}px,${view.y}px) scale(${view.s})`; }
+function zoomAt(px, py, f){
+  const s2 = Math.min(3, Math.max(minS(), view.s * f)), k = s2 / view.s;
+  view.x = px - (px - view.x)*k; view.y = py - (py - view.y)*k; view.s = s2; apply();
+}
+let anim;
+function animateTo(tx, ty, ts, instant){
+  cancelAnimationFrame(anim);
+  if (instant){ view.x = tx; view.y = ty; view.s = ts; apply(); return; }
+  const sx = view.x, sy = view.y, ss = view.s, t0 = performance.now(), D = 520;
+  const step = now => { const t = Math.min(1, (now - t0)/D), e = 1 - Math.pow(1-t, 3);
+    view.s = ss + (ts-ss)*e; view.x = sx + (tx-sx)*e; view.y = sy + (ty-sy)*e; apply(); if (t < 1) anim = requestAnimationFrame(step); };
+  anim = requestAnimationFrame(step);
+}
+function cardH(){ return $("#card").classList.contains("show") ? $("#card").offsetHeight + 20 : 0; }
+function fitBox([x0,y0,x1,y1], pad, instant, minScale){
+  const w = x1-x0+pad*2, h = y1-y0+pad*2;
+  const s = Math.min(1.4, Math.max(minScale || 0, fitScale(w, h)));
+  animateTo(wrap.clientWidth/2 - (x0+x1)/2*s, wrap.clientHeight/2 - (y0+y1)/2*s, s, instant);
+}
+function fitAll(instant){ const m = STAGE[cur].m; const s = fitScale(m.w, m.h)*0.98; animateTo((wrap.clientWidth - m.w*s)/2, (wrap.clientHeight - m.h*s)/2, s, instant); }
+function flyToPts(pts, s){
+  const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+  const cx = (Math.min(...xs)+Math.max(...xs))/2, cy = (Math.min(...ys)+Math.max(...ys))/2;
+  animateTo(wrap.clientWidth/2 - cx*s, (wrap.clientHeight - cardH())/2 - cy*s, s);
+}
+function showStage(key){
+  if (cur === key) return;
+  STAGE[cur].el.classList.remove("on"); cur = key; STAGE[cur].el.classList.add("on");
+  drawFavs();
+}
+
+/* ---------- app state ---------- */
+let mode = "overview", curZone = null, query = "", selected = null;
+let favs = new Set(store.get("mori2026tn-favs", []));
+const mapOfZone = k => zoneObj(k).map;
+
+function setDim(){
+  Object.values(STAGE).forEach(S => S.g.dim.innerHTML = "");
+  if (mode !== "detail" || !curZone || !ZONES.some(z => z.k === curZone)) return;
+  const S = STAGE[mapOfZone(curZone)], [x0,y0,x1,y1] = S.m.zones[curZone], p = 14, r = 34;
+  const {w,h} = S.m;
+  const hole = `M${x0-p+r},${y0-p} H${x1+p-r} A${r},${r} 0 0 1 ${x1+p},${y0-p+r} V${y1+p-r} A${r},${r} 0 0 1 ${x1+p-r},${y1+p} H${x0-p+r} A${r},${r} 0 0 1 ${x0-p},${y1+p-r} V${y0-p+r} A${r},${r} 0 0 1 ${x0-p+r},${y0-p} Z`;
+  el("path",{d:`M0,0 H${w} V${h} H0 Z ${hole}`,class:"dim"},S.g.dim);
+}
+
+/* ---------- panel ---------- */
+function setCrumb(){
+  const back = $("#back"), t = $("#ctitle"), s = $("#csub");
+  if (query){ back.style.display = "none"; t.textContent = "搜尋結果"; s.textContent = ""; return; }
+  if (mode === "overview"){ back.style.display = "none"; t.textContent = "選擇分區"; s.textContent = `${ALL.length} 個攤位`; return; }
+  back.style.display = "inline-block";
+  if (curZone === "FAC"){ t.textContent = "服務設施"; s.textContent = ""; return; }
+  if (curZone === "FAV"){ t.textContent = "★ 我的逛展清單"; s.textContent = favs.size + " 個收藏"; return; }
+  const z = zoneObj(curZone);
+  t.innerHTML = `<span class="sw" style="background:${z.c}">${z.k==="CB"?"":z.k}</span>${z.name}`; s.textContent = z.type;
+}
+function renderPanel(){
+  setCrumb();
+  const list = $("#list");
+  if (query) return renderRows(entries.filter(matches), true);
+  if (mode === "overview"){
+    const named = k => entries.filter(e => e.zone === k && e.brand).length;
+    list.innerHTML = ZONES.map(z => `<button class="zcard" data-zone="${z.k}">
+        <span class="letter ${z.k==="CB"?"txt":"num"}" style="background:${z.c}">${z.k==="CB"?"小木屋":z.k}</span>
+        <span><b>${z.name}　<small style="font-weight:500;color:var(--ink2)">${z.type}</small></b><span>${countZone(z.k)} 個攤位${named(z.k)?`・已公布 ${named(z.k)} 個品牌`:""}</span></span>
+        <span class="go">→</span></button>`).join("")
+      + `<button class="zcard" data-zone="FAC"><span class="letter txt" style="background:#fff">設施</span><span><b>服務設施</b><span>服務台・集章所・洗手間・遊客中心</span></span><span class="go">→</span></button>`
+      + `<button class="zcard" data-zone="FAV"><span class="letter" style="background:#fff;color:var(--orange);font-size:26px">★</span><span><b>我的逛展清單</b><span>${favs.size ? favs.size+" 個收藏" : "點選攤位旁的 ★ 加入"}</span></span><span class="go">→</span></button>`
+      + `<p class="note">部分攤位依日期由不同品牌使用，可用上方日期篩選查看當日品牌。<br>配置圖為示意，實際攤位以現場為準。</p>`;
+    return;
+  }
+  if (curZone === "FAC"){
+    list.innerHTML = FACILITIES.map(f => `<div class="item" role="button" tabindex="0" data-fac="${f.id}">
+      <span class="badge" style="--zc:#fff;font-weight:700">${f.s}</span>
+      <span class="t"><b>${f.name}</b><span>${f.pts.length>1 ? f.pts.length+" 處・點選查看位置" : "點選查看位置"}</span></span></div>`).join("")
+      + `<p class="note">周邊地標：志開實驗小學・桂子山<br>臨近道路：水交社路・水交社一街・南門路・興中街63巷</p>`;
+    return;
+  }
+  if (curZone === "FAV") return renderRows(entries.filter(e => favs.has(e.key) && onDay(e)), true, "還沒有收藏的攤位<br>點選清單右側的 ★ 加入逛展清單");
+  renderRows(entries.filter(e => e.zone === curZone && onDay(e)), false);
+}
+function matches(e){
+  if (!onDay(e)) return false;
+  const q = query.toLowerCase(), qu = query.toUpperCase().replace(/\s+/g,"").replace(/^(小木屋|木)/,"CB"), qb = normBooth(query);
+  if (e.booths.some(id => (id === qb && query.replace(/\D/g,"").length >= 2) || id.startsWith(qu) || label(id).toLowerCase().includes(q))) return true;
+  const b = e.brand; if (!b) return false;
+  return [b.name,b.name_en,b.category,b.origin,b.desc].some(v => v && String(v).toLowerCase().includes(q));
+}
+function renderRows(res, grouped, emptyMsg){
+  const list = $("#list");
+  if (!res.length){ list.innerHTML = `<div class="empty">${emptyMsg || "找不到符合的品牌或攤位"}</div>`; return; }
+  let html = "", g = null;
+  res.forEach(e => {
+    if (grouped && e.zone !== g){ g = e.zone; const z = zoneObj(g);
+      html += `<div class="group-h"><span class="sw" style="background:${z.c}"></span>${z.name}<small>${z.type}・${res.filter(x=>x.zone===g).length}</small></div>`; }
+    const z = zoneObj(e.zone), b = e.brand, tags = e.booths.map(label).join("・");
+    html += `<div class="item${b?"":" pending"}" role="button" tabindex="0" data-key="${e.key}" aria-current="${selected===e.key}">
+      <span class="badge num" style="--zc:${z.fill}">${esc(e.booths.length>1?label(e.booths[0])+"+":label(e.booths[0]))}</span>
+      <span class="t"><b>${b?esc(b.name):"本攤位暫無品牌"}</b><span>${b?esc([b.category,b.origin,b.days.length<3?"僅 "+dayText(b.days):""].filter(Boolean).join("・")||tags):(e.booths.length>1?tags+"・":"")+eSub(e.booths[0])}</span></span>
+      <button class="fav" data-fav="${e.key}" aria-pressed="${favs.has(e.key)}" aria-label="加入逛展清單">★</button></div>`;
+  });
+  list.innerHTML = html;
+}
+$("#list").addEventListener("click", e => {
+  const f = e.target.closest("[data-fav]"); if (f){ toggleFav(f.dataset.fav); return; }
+  const zc = e.target.closest("[data-zone]"); if (zc){ enterZone(zc.dataset.zone); return; }
+  const fc = e.target.closest("[data-fac]"); if (fc){ showFacility(fc.dataset.fac); return; }
+  const it = e.target.closest("[data-key]"); if (it) select(it.dataset.key, true);
+});
+$("#list").addEventListener("keydown", e => {
+  if (e.key!=="Enter" && e.key!==" ") return;
+  const d = e.target.dataset || {};
+  if (d.key){ e.preventDefault(); select(d.key,true); } else if (d.fac){ e.preventDefault(); showFacility(d.fac); }
+});
+$("#back").onclick = () => toOverview();
+function toggleFav(key){
+  favs.has(key) ? favs.delete(key) : favs.add(key);
+  store.set("mori2026tn-favs", [...favs]); renderPanel(); drawFavs();
+  if (selected === key) renderCard();
+}
+
+/* ---------- modes ---------- */
+/* ---------- 上一頁：記錄瀏覽步驟 ---------- */
+const navStack = []; let restoring = false;
+const snap = () => ({mode, curZone, selected, fac: curFac});
+let curFac = null;
+function pushNav(){
+  if (restoring) return;
+  const s = snap(), t = navStack[navStack.length-1];
+  if (t && t.mode === s.mode && t.curZone === s.curZone && t.selected === s.selected && t.fac === s.fac) return;
+  navStack.push(s); if (navStack.length > 40) navStack.shift();
+}
+function navLabel(st){
+  if (!st || st.mode === "overview") return "全區地圖";
+  if (st.selected){ const e = entries.find(x => x.key === st.selected); return e ? label(e.booths[0]) : "上一頁"; }
+  if (st.curZone === "FAC") return "服務設施";
+  if (st.curZone === "FAV") return "逛展清單";
+  const z = st.curZone && zoneObj(st.curZone); return z ? z.name : "上一頁";
+}
+function updateBack(){
+  const show = mode !== "overview" || !!selected;
+  $("#mapBack").classList.toggle("show", show);
+  $("#mapBackTxt").textContent = "回" + navLabel(navStack[navStack.length-1]);
+}
+function goBack(){
+  if (query){ $("#q").value = ""; query = ""; $("#clearQ").style.display = "none"; clearHits(); }
+  const st = navStack.pop();
+  restoring = true;
+  try{
+    if (!st || st.mode === "overview") toOverview();
+    else if (st.fac){ enterZone(st.curZone || "FAC"); showFacility(st.fac); }
+    else if (st.selected) select(st.selected, true);
+    else if (st.curZone) enterZone(st.curZone);
+    else toOverview();
+  } finally { restoring = false; }
+  updateBack();
+}
+$("#mapBack").onclick = goBack;
+$("#days").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-day]"); if (!b) return;
+  dayFilter = +b.dataset.day;
+  document.querySelectorAll("#days [data-day]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  if (query) runSearch(); else renderPanel();
+  if (selected){ const e = entries.find(x => x.key === selected); if (e && !onDay(e)){ const alt = pickBrand(e.booths[0]); if (alt && alt !== e && onDay(alt)) select(alt.key, false); } }
+});
+
+function enterZone(k, fly = true){
+  pushNav(); curFac = null;
+  mode = "detail"; curZone = k; selected = null; $("#card").classList.remove("show"); clearSel(); clearHits();
+  if (k === "FAC" || k === "FAV"){
+    showStage("ov"); setDim();
+    $("#hint").textContent = k === "FAC" ? "點選左側設施查看位置" : "我的逛展清單";
+    if (fly){
+      const ids = k === "FAV" ? entries.filter(e => favs.has(e.key)).flatMap(e => e.booths) : [];
+      if (ids.length){ const P = ids.map(id => MAPS.ov.pos[id]); fitBox([Math.min(...P.map(p=>p[0])),Math.min(...P.map(p=>p[1])),Math.max(...P.map(p=>p[0])),Math.max(...P.map(p=>p[1]))], 140); }
+      else fitAll();
+    }
+  } else {
+    const was = cur; showStage(mapOfZone(k)); setDim();
+    $("#hint").textContent = "點選攤位查看品牌";
+    if (fly) fitBox(STAGE[cur].m.zones[k], 50, was !== cur, isMobile() && k !== "CB" ? 0.42 : 0);
+  }
+  renderPanel();
+  setHash(k === "FAV" ? "favorites" : k === "FAC" ? "facilities" : "zone-" + k.toLowerCase());
+  updateBack();
+}
+function toOverview(){
+  if (!restoring) navStack.length = 0; curFac = null;
+  mode = "overview"; curZone = null; selected = null;
+  $("#card").classList.remove("show"); clearSel(); clearHits();
+  const was = cur; showStage("ov"); setDim(); $("#hint").textContent = "點選分區查看攤位";
+  renderPanel(); fitAll(was !== "ov"); setHash(""); updateBack();
+}
+function setHash(h){ try{ history.replaceState(null, "", h ? "#"+h : location.pathname + location.search); }catch(_){} }
+
+/* ---------- overlays ---------- */
+function clearSel(){ Object.values(STAGE).forEach(S => S.g.sel.innerHTML = ""); }
+function clearHits(){ Object.values(STAGE).forEach(S => S.g.hit.innerHTML = ""); }
+function ring(S, g, id, cls, extra){
+  const [x,y] = S.m.pos[id]; const R = S.R + (extra||0);
+  const cw = S.R*0.95, ch = S.R*1.4; return id.startsWith("CB") ? el("rect",{x:x-cw-(extra||0),y:y-ch*0.7-(extra||0),width:cw*2+(extra||0)*2,height:ch*2+(extra||0)*2,rx:12,class:cls},g)
+                             : el("circle",{cx:x,cy:y,r:R,class:cls},g);
+}
+function drawFavs(){
+  Object.values(STAGE).forEach(S => {
+    S.g.fav.innerHTML = "";
+    entries.filter(e => favs.has(e.key)).forEach(e => e.booths.forEach(id => { const p = S.m.pos[id]; if (p) el("circle",{cx:p[0]+S.R*0.75,cy:p[1]-S.R*0.75,r:S.R*0.35,class:"favmark"},S.g.fav); }));
+  });
+}
+function showFacility(id){
+  const f = FACILITIES.find(x => x.id === id); if (!f) return;
+  pushNav(); curFac = id; if (curZone !== "FAC"){ mode = "detail"; curZone = "FAC"; }
+  showStage("ov"); clearHits(); clearSel(); $("#card").classList.remove("show");
+  f.pts.forEach(([x,y]) => el("circle",{cx:x,cy:y,r:70,class:"hit"},STAGE.ov.g.hit));
+  document.querySelectorAll(".item[data-fac]").forEach(n => n.setAttribute("aria-current", n.dataset.fac === id));
+  const xs = f.pts.map(p=>p[0]), ys = f.pts.map(p=>p[1]);
+  fitBox([Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)], 230); updateBack();
+}
+
+/* ---------- search ---------- */
+let qt;
+$("#q").addEventListener("input", e => {
+  query = e.target.value.trim(); $("#clearQ").style.display = query ? "block" : "none";
+  clearTimeout(qt); qt = setTimeout(runSearch, 120);
+});
+function runSearch(){
+  clearHits();
+  if (!query){ if (curZone) enterZone(curZone, false); else toOverview(); return; }
+  const res = entries.filter(matches), ids = [...new Set(res.flatMap(e => e.booths))];
+  renderPanel();
+  const qn = normBooth(query);
+  const exact = /^([A-E]|CB)\d\d$/.test(qn) && query.replace(/\D/g,"").length >= 2 ? entries.find(x => x.booths.includes(qn)) : null;
+  if (exact){ select(exact.key, true); return; }
+  showStage("ov"); mode = "detail"; curZone = null; setDim();
+  $("#hint").textContent = `找到 ${ids.length} 個攤位`; updateBack();
+  ids.forEach(id => ring(STAGE.ov, STAGE.ov.g.hit, id, "hit", 2));
+  if (ids.length && ids.length < 150){ const P = ids.map(id => MAPS.ov.pos[id]); fitBox([Math.min(...P.map(p=>p[0])),Math.min(...P.map(p=>p[1])),Math.max(...P.map(p=>p[0])),Math.max(...P.map(p=>p[1]))], 120); }
+}
+$("#clearQ").addEventListener("click", e => { e.preventDefault(); $("#q").value=""; query=""; $("#clearQ").style.display="none"; clearHits();
+  if (curZone) enterZone(curZone, false); else toOverview(); });
+
+/* ---------- selection & card ---------- */
+function select(key, fly){
+  const e = entries.find(x => x.key === key); if (!e) return;
+  if (selected !== key) pushNav(); curFac = null;
+  const was = cur;
+  if (!query && curZone !== "FAV" && curZone !== e.zone){ mode = "detail"; curZone = e.zone; renderPanel(); }
+  if (curZone !== "FAV" || !query) { showStage(mapOfZone(e.zone)); }
+  if (curZone === e.zone) setDim();
+  selected = key; clearSel();
+  const S = STAGE[cur];
+  e.booths.forEach(id => { if (S.m.pos[id]){ ring(S, S.g.sel, id, "sel1", 3); ring(S, S.g.sel, id, "sel2", 3); } });
+  renderCard();
+  document.querySelectorAll(".item[data-key]").forEach(n => n.setAttribute("aria-current", n.dataset.key===key));
+  const pts = e.booths.map(id => S.m.pos[id]).filter(Boolean);
+  if (fly || was !== cur) flyToPts(pts, Math.max(was === cur ? view.s : 0, isMobile() ? 0.8 : 1));
+  setHash(e.booths[0].startsWith("CB") ? "W" + e.booths[0].slice(2) : e.booths[0]);
+  updateBack();
+}
+function renderCard(){
+  const e = entries.find(x => x.key === selected), card = $("#card");
+  if (!e){ card.classList.remove("show"); return; }
+  const b = e.brand, z = zoneObj(e.zone);
+  const tag = `<span class="boothtag" style="--zc:${z.c}"><i class="sw"></i>${z.name}・<span class="num">${e.booths.map(label).join(" / ")}</span></span>`;
+  const links = b ? [["ig","Instagram"],["ig2","Instagram"],["fb","Facebook"],["web","社群連結"]].filter(([k]) => safeUrl(b[k])).map(([k,n]) => `<a href="${esc(safeUrl(b[k]))}" target="_blank" rel="noopener">${n} ↗</a>`).join("") : "";
+  const others = sameBooth(e);
+  const share = others.length ? `<div class="share">此攤位依日期由不同品牌使用：${others.map(o => `<button data-go="${o.key}">${esc(o.brand.name)}（${dayText(o.brand.days)}）</button>`).join("、")}</div>` : "";
+  const dateRow = b ? `<div class="dates">${DAYS.map(d => `<span class="${b.days.includes(d)?"on":""}">11/${d}</span>`).join("")}</div>` : "";
+  const hasLogo = b && (safeUrl(b.logo) || /^data:image\//.test(b.logo||""));
+  const logo = hasLogo ? `<img src="${esc(b.logo)}" alt="">` : (b ? esc(b.name.slice(0,1)) : "?");
+  card.innerHTML = `<button class="x" aria-label="關閉">×</button>${tag}
+    <div class="row"><div class="logo">${logo}</div><div style="min-width:0">
+      <h3>${b ? esc(b.name) : "本攤位暫無品牌"}</h3>
+      <div class="sub">${b ? esc([b.name_en,b.category,b.origin,b.type?b.type+"品牌":""].filter(Boolean).join("・")) : eSub(e.booths[0])}</div></div></div>
+    ${dateRow}${share}
+    ${b && b.desc ? `<p class="desc">${esc(b.desc)}</p>` : ""}
+    <div class="links">${links}
+      <button data-act="fav">${favs.has(e.key) ? "★ 已收藏" : "☆ 收藏"}</button>
+      <button data-act="link">複製攤位連結</button></div>`;
+  card.classList.add("show");
+}
+$("#card").addEventListener("click", ev => {
+  if (ev.target.closest(".x")){ $("#card").classList.remove("show"); selected=null; clearSel();
+    document.querySelectorAll(".item[data-key]").forEach(n => n.setAttribute("aria-current", false));
+    const t = navStack[navStack.length-1]; if (t && !t.selected && t.curZone === curZone) navStack.pop();
+    updateBack(); return; }
+  const go = ev.target.closest("[data-go]"); if (go){ select(go.dataset.go, false); return; }
+  const a = ev.target.closest("[data-act]"); if (!a) return;
+  if (a.dataset.act === "fav") toggleFav(selected);
+  if (a.dataset.act === "link"){
+    const e = entries.find(x => x.key === selected), id = e.booths[0];
+    const url = location.href.split("#")[0] + "#" + (id.startsWith("CB") ? "W" + id.slice(2) : id);
+    try{ navigator.clipboard.writeText(url).then(() => toast("已複製攤位連結"), () => toast("無法複製，請手動複製網址")); }catch(_){ toast("無法複製，請手動複製網址"); }
+  }
+});
+
+/* ---------- pointer ---------- */
+const pointers = new Map(); let pinch = null, moved = false, downAt = null;
+wrap.addEventListener("pointerdown", e => {
+  if (e.target.closest(".card,.tools,.mapbar")) return;
+  wrap.setPointerCapture(e.pointerId); pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+  moved = false; downAt = {x:e.clientX, y:e.clientY}; cancelAnimationFrame(anim);
+  if (pointers.size === 2){ const [a,b] = [...pointers.values()]; pinch = {d:Math.hypot(a.x-b.x,a.y-b.y)}; }
+});
+wrap.addEventListener("pointermove", e => {
+  const r = wrap.getBoundingClientRect();
+  if (!pointers.has(e.pointerId)){ hover(e, r); return; }
+  const p = pointers.get(e.pointerId), dx = e.clientX - p.x, dy = e.clientY - p.y;
+  p.x = e.clientX; p.y = e.clientY;
+  if (downAt && Math.hypot(e.clientX-downAt.x, e.clientY-downAt.y) > 6) moved = true;
+  if (pointers.size === 2 && pinch){
+    const [a,b] = [...pointers.values()], d = Math.hypot(a.x-b.x,a.y-b.y);
+    zoomAt((a.x+b.x)/2 - r.left, (a.y+b.y)/2 - r.top, d / pinch.d); pinch.d = d;
+  } else if (pointers.size === 1 && moved){ view.x += dx; view.y += dy; apply(); wrap.classList.add("dragging"); }
+});
+function up(e){
+  if (!pointers.has(e.pointerId)) return;
+  pointers.delete(e.pointerId); if (pointers.size < 2) pinch = null;
+  wrap.classList.remove("dragging");
+  if (!moved && downAt && pointers.size === 0){
+    const hit = document.elementFromPoint(e.clientX, e.clientY);
+    const id = hit && hit.dataset && hit.dataset.id, zone = hit && hit.dataset && hit.dataset.zone;
+    if (id){ const en = pickBrand(id) || entries.find(x => x.key === id); if (en){ if (query){ $("#clearQ").click(); } select(en.key, cur === "ov"); } }
+    else if (zone && cur === "ov") enterZone(zone);
+  }
+  downAt = null;
+}
+wrap.addEventListener("pointerup", up); wrap.addEventListener("pointercancel", up);
+wrap.addEventListener("wheel", e => { e.preventDefault(); const r = wrap.getBoundingClientRect(); zoomAt(e.clientX-r.left, e.clientY-r.top, Math.exp(-e.deltaY * 0.0018)); }, {passive:false});
+wrap.addEventListener("pointerleave", () => $("#tip").style.display = "none");
+function hover(e, r){
+  const tip = $("#tip"), d = e.target.dataset || {};
+  if (d.id){ const a = (brandByBooth[d.id] || []).filter(onDay); tip.innerHTML = `<b class="num">${label(d.id)}</b>　${a.length ? a.map(x => esc(x.brand.name) + (x.brand.days.length < 3 ? `（${dayText(x.brand.days)}）` : "")).join(" / ") : "暫無品牌"}`; }
+  else if (d.zone){ const z = zoneObj(d.zone); tip.innerHTML = `<b>${z.name}</b>　${z.type}・點選查看`; }
+  else { tip.style.display = "none"; return; }
+  tip.style.left = (e.clientX - r.left) + "px"; tip.style.top = (e.clientY - r.top) + "px"; tip.style.display = "block";
+}
+$("#zin").onclick = () => zoomAt(wrap.clientWidth/2, wrap.clientHeight/2, 1.5);
+$("#zout").onclick = () => zoomAt(wrap.clientWidth/2, wrap.clientHeight/2, 1/1.5);
+$("#zfit").onclick = () => { if (mode === "detail" && curZone && ZONES.some(z => z.k === curZone) && !query) fitBox(STAGE[cur].m.zones[curZone], 50, false, isMobile() && curZone !== "CB" ? 0.42 : 0); else toOverview(); };
+$("#jumpBtn").onclick = () => $("#app").scrollIntoView({behavior:"smooth"});
+addEventListener("resize", () => apply());
+
+/* ---------- init ---------- */
+STAGE.ov.el.classList.add("on");
+renderPanel(); drawFavs();
+requestAnimationFrame(() => { fitAll(true); openHash(); });
+function openHash(){
+  const h = decodeURIComponent(location.hash.slice(1)); if (!h) return;
+  if (h === "favorites"){ $("#app").scrollIntoView(); return enterZone("FAV"); }
+  if (h === "facilities"){ $("#app").scrollIntoView(); return enterZone("FAC"); }
+  const zm = h.match(/^zone-(a|b|c|d|e|cb)$/i); if (zm){ $("#app").scrollIntoView(); return enterZone(zm[1].toUpperCase()); }
+  const id = normBooth(h.replace(/^W(\d)/i,"CB$1")), en = pickBrand(id) || entries.find(x => x.key === id);
+  if (en){ $("#app").scrollIntoView(); setTimeout(() => select(en.key, true), 60); }
+}
+addEventListener("hashchange", openHash);
+</script>
+</body>
+</html>
