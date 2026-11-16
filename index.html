@@ -142,11 +142,16 @@ footer b{color:var(--ink)}
   .hero img{max-width:340px;margin:0 auto}
   .fact b{font-size:18px}
   .app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;scroll-margin-top:50px}
-  .mapwrap{grid-row:1;height:min(58vh,520px);position:sticky;top:52px;z-index:10;border-bottom:2px solid var(--ink)}
+  .mapwrap{grid-row:1;height:auto;aspect-ratio:2576/1887;max-height:62vh;position:sticky;top:52px;z-index:10;border-bottom:2px solid var(--ink);background:#F3EEE3}
+  .mapbar{left:8px;top:8px;gap:6px}
+  .mapback{padding:3px 10px 3px 6px;font-size:12.5px}
+  .tools{right:8px;top:8px;gap:6px}
+  .tools button{width:34px;height:34px;border-radius:10px;font-size:17px}
+  .card{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));z-index:40;max-height:52vh;overflow:auto}
   .panel{grid-row:2;border-right:0}
   .list{overflow:visible}
   .card{bottom:10px;padding:14px 16px}
-  .hint{font-size:12px}
+  .hint{font-size:11.5px;padding:2px 10px;background:rgba(255,255,255,.92)}
 }
 </style>
 </head>
@@ -655,13 +660,13 @@ function animateTo(tx, ty, ts, instant){
     view.s = ss + (ts-ss)*e; view.x = sx + (tx-sx)*e; view.y = sy + (ty-sy)*e; apply(); if (t < 1) anim = requestAnimationFrame(step); };
   anim = requestAnimationFrame(step);
 }
-function cardH(){ return $("#card").classList.contains("show") ? $("#card").offsetHeight + 20 : 0; }
+function cardH(){ if (isMobile()) return 0; return $("#card").classList.contains("show") ? $("#card").offsetHeight + 20 : 0; }
 function fitBox([x0,y0,x1,y1], pad, instant, minScale){
   const w = x1-x0+pad*2, h = y1-y0+pad*2;
   const s = Math.min(1.4, Math.max(minScale || 0, fitScale(w, h)));
   animateTo(wrap.clientWidth/2 - (x0+x1)/2*s, wrap.clientHeight/2 - (y0+y1)/2*s, s, instant);
 }
-function fitAll(instant){ const m = STAGE[cur].m; const s = fitScale(m.w, m.h)*0.98; animateTo((wrap.clientWidth - m.w*s)/2, (wrap.clientHeight - m.h*s)/2, s, instant); }
+function fitAll(instant){ const m = STAGE[cur].m; const s = fitScale(m.w, m.h)*(isMobile() ? 1 : 0.98); animateTo((wrap.clientWidth - m.w*s)/2, (wrap.clientHeight - m.h*s)/2, s, instant); }
 function flyToPts(pts, s){
   const xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
   const cx = (Math.min(...xs)+Math.max(...xs))/2, cy = (Math.min(...ys)+Math.max(...ys))/2;
